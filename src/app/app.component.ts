@@ -1,8 +1,9 @@
 import { Component, Inject } from '@angular/core';
 // import { DialogAddTodoComponent } from './dialog-add-todo/dialog-add-todo.component';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DialogAddTodoComponent } from './dialog-add-todo/dialog-add-todo.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { TodosService } from './todos.service';
 
 import { DialogExampleComponent } from './dialog-example/dialog-example.component';
 
@@ -14,8 +15,8 @@ import { DialogExampleComponent } from './dialog-example/dialog-example.componen
 })
 export class AppComponent {
   title = 'test';
-  constructor(public dialog : MatDialog,) {}
+  constructor(public dialog : MatDialog, public todosService: TodosService) {}
   openDialog() {
-    this.dialog.open(DialogAddTodoComponent);
+    const dialogRef = this.dialog.open(DialogAddTodoComponent);
 }
 }

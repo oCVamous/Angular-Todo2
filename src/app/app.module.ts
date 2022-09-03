@@ -24,6 +24,7 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     AppComponent,
     DialogExampleComponent,
+    DialogAddTodoComponent,
   ],
   imports: [
     BrowserModule,
