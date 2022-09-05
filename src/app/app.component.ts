@@ -1,4 +1,9 @@
 import { Component } from '@angular/core';
+import { MatDialog, MatDialogRef} from '@angular/material/dialog';
+import { DialogAddTodoComponent } from './dialog-add-todo/dialog-add-todo.component';
+import { DialogDeleteTodoComponent } from './dialog-delete-todo/dialog-delete-todo.component';
+import { DialogEditTodoComponent } from './dialog-edit-todo/dialog-edit-todo.component';
+import { TodosService } from './todos.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +11,36 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'todoApp2';
+  title = '<Patricks Todo-List>';
+
+  constructor(public dialog: MatDialog, public todosService: TodosService) {
+
+  }
+  /**
+   * Opens the dialog window by opening the correct composed dialog(DialogAddTodoComponent)
+   */
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogAddTodoComponent); 
+  }
+
+  /**
+   * Opens the dialog window by opening the correct composed dialog(DialogEditTodoComponent)
+   * Important: The respective todo must be passed, so that the correct todo can be processed.
+   * @param todo 
+   */
+  openEditDialog(todo: any): void {
+    const dialogRef = this.dialog.open(DialogEditTodoComponent); 
+    dialogRef.componentInstance.currentTodo = todo;
+  }
+  /**
+   * Opens the dialog window by opening the correct composed dialog(DialogEditTodoComponent)
+   * Important: The respective todo must be passed, so that the correct todo can be deleted.
+   * @param todo 
+   */
+  openDeleteDialog(todo: any): void {
+    const dialogRef = this.dialog.open(DialogDeleteTodoComponent); 
+    dialogRef.componentInstance.currentTodo = todo; //To access the functions and variables of a component you need instanceOf
+  }
+
+
 }

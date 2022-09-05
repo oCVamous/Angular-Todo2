@@ -17,10 +17,14 @@ export class DialogAddTodoComponent implements OnInit {
   closeDialog() {
     this.dialogRef.close();
   }
-
-  testing() {
-    this.todosService.test();
+ /**
+  * To save, the service must be called and the new todo must be passed
+  */
+  saveTodo() {
+    this.todosService.saveTodo(this.newTodo);
     this.closeDialog();
   }
+
+  
 
 }
